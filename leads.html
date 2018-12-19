@@ -1,0 +1,160 @@
+<?php include "header.php"?>
+<div class="modal fade" id="addLead" tabindex="-1" role="dialog" aria-labelledby="addLead" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addLead">Add New Lead</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="../controllers/leads.php" method="post">
+      <div class="modal-body">
+              
+          <div class="form-group">
+              <label >Email</label>
+              <input  class="form-control" name="email" type="email" required >
+          </div>
+          <div class="form-group">
+            <label >Phone Number</label>
+            <input  class="form-control" name="phone" type="text" >
+          </div> 
+          <div class="form-group">
+            <label >Name</label>
+            <input  class="form-control" name="name" type="text">
+          </div> 
+          <div class="form-group">
+            <label >Designation</label>
+            <input  class="form-control" name="designation" type="text" >
+          </div> 
+          <div class="form-group">
+            <label >Address</label>
+            <textarea  class="form-control" name="address" type="text" rows="4"></textarea>
+          </div>
+            <input type="hidden" name="action" value="addLead">
+            <input type="hidden" name="key" value='<?php echo $_COOKIE["PHPSESSID"];?>'>
+      </div>
+      <div class="modal-footer">
+          <input type="submit" class="btn btn-success " value="Add" formtarget="formtarget" onclick='$("#addLead").modal("hide");'>
+          <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="bulkLeads" tabindex="-1" role="dialog" aria-labelledby="bulkLeads" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="bulkLeads">Add New Lead</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="../controllers/leads.php" method="post" enctype="multipart/form-data">
+      <div class="modal-body">
+        <div class="form-group">
+          <label >Please follow the following format:</label>
+          <label >email,phone,name,designation,address</label>
+          </div>    
+          <div class="form-group">
+              <label >Upload CSV</label>
+              <input type="file" name="leads"  class="form-control" required>
+          </div>
+          
+            <input type="hidden" name="action" value="bulkLead">
+            <input type="hidden" name="key" value='<?php echo $_COOKIE["PHPSESSID"];?>'>
+      </div>
+      <div class="modal-footer">
+          <input type="submit" class="btn btn-success " value="Upload" formtarget="formtarget" onclick='$("#bulkLeads").modal("hide");'>
+          <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <div class="main-panel">
+        <div class="content-wrapper">
+                  <div class="col-12 grid-margin">
+            <div class="card">
+              <div class="card-body">
+                  
+                <div class="row">
+                    
+                  <button type="button" class="btn btn-primary m-1 " onclick="$('#addLead').modal();">
+                    <i class="icon-md mdi mdi-account-plus"></i>
+                      Add New Lead
+                  </button>
+                  <button type="button" class="btn btn-primary m-1 " onclick="$('#bulkLeads').modal();">
+                    <i class="icon-md mdi mdi-account-multiple-plus"></i>
+                      Bulk Upload Leads
+                  </button>
+                  <button type="button" class="btn btn-primary m-1 " >
+                    <i class="icon-md mdi mdi-account-search"></i>
+                      Search
+                  </button>
+                  <button type="button" class="btn btn-primary m-1 " onclick="deleteLead()">
+                      <i class="icon-md mdi mdi-account-search"></i>
+                        Delete Selected
+                    </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 grid-margin">
+            <div class="card">
+                <div class="card-body">
+                  <h4>Your Leads</h4>
+              <div class="table-responsive">
+                <table class="table table-hover center-aligned-table">
+                  <thead class="bg-light">
+                    <th>Select</th>
+                    <th>S.NO.</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Name</th>
+                    <th>Designation</th>
+                    <th>Address</th>
+                    <th>Added On</th>
+                  </thead>
+                <tbody id="leaddata">
+                  <td>Fetching...</td>
+                  </tbody>
+                </table>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+          <div class="container-fluid clearfix">
+            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018. All rights reserved.</span>
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <!-- plugins:js -->
+  <script src="vendors/js/vendor.bundle.base.js"></script>
+  <script src="vendors/js/vendor.bundle.addons.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page-->
+  <!-- End plugin js for this page-->
+  <!-- inject:js -->
+<script src="js/template.js"></script>
+<!-- endinject -->
+  <!-- Custom js for this page-->
+  <!-- End custom js for this page-->
+</body>
+<script><?php include 'controllers/leads.js'?></script>
+</html>
