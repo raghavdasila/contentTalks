@@ -10,4 +10,4 @@ Paste the following lines in the Nginx configuration file:
         rewrite ^/send /send.html;
         rewrite ^/view /view.php;
     ```
-    Project was hosted at thecontenttalks.com and is no longer under development.
+Project was hosted at thecontenttalks.com and is no longer under development.
